@@ -1,20 +1,21 @@
-function isSubsequence(strOne, strTwo) {
+function isSubsequence(substr, sequence) {
   let pointerOne = 0;
   let pointerTwo = 0;
-  let ph = "";
-  while (pointerOne < strOne.length) {
-    if (strOne[pointerOne] == strTwo[pointerTwo]) {
-      ph += strOne[pointerOne];
+  while (substr[pointerOne] != undefined && pointerTwo < sequence.length) {
+    if (substr[pointerOne] == sequence[pointerTwo]) {
       pointerOne++;
-
-      if (ph == strOne) {
+      if (pointerOne == substr.length) {
         return true;
       }
+      pointerTwo++;
+      continue;
     }
     pointerTwo++;
-    if (pointerTwo >= strTwo.length) {
-      return false;
-    }
   }
+  return false;
 }
-console.log(isSubsequence("abc", "rrrralllboool;ksl;dfkl;sdccccf"));
+
+console.log(isSubsequence("hello", "hello world")); // true ✅
+console.log(isSubsequence("sing", "sting")); // true ✅
+console.log(isSubsequence("abc", "abracadabra")); // true ✅
+console.log(isSubsequence("abc", "acb")); // false (order matters) ❌
