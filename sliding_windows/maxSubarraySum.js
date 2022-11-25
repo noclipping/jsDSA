@@ -1,19 +1,23 @@
 function maxSubarraySum(arr, num) {
-  let maxSum = 0;
-  let tempSum = 0;
   if (arr.length < num) return null;
+  let maxSum = 0;
+  let curr = 0;
   for (let i = 0; i < num; i++) {
-    // get the first window total
     maxSum += arr[i];
   }
-  tempSum = maxSum;
+  curr = maxSum;
   for (let i = 0; i < arr.length; i++) {
-    /*
-         This upcoming line is tricky. We are taking our temporary subarray window sum and subtracting the number from the start (of the subarray),
-         and adding the one AFTER it (the subarray). Thus creating the next iteration of our subarray window.
-    */
-    tempSum = tempSum - arr[i - num] + arr[i];
-    maxSum = Math.max(maxSum, tempSum); // Compare and find the larger of the prev and current window (subarray)
+    curr = curr - arr[i] + arr[i + num];
+    if (!curr) return maxSum;
+    maxSum = Math.max(curr, maxSum);
   }
   return maxSum;
 }
+
+console.log(
+  maxSubarraySum([100, 200, 300, 400], 2), // 700
+  maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4), // 39
+  maxSubarraySum([-3, 4, 0, -2, 6, -1], 2), // 5
+  maxSubarraySum([3, -2, 7, -4, 1, -1, 4, -2, 1], 2), // 5
+  maxSubarraySum([2, 3], 3)
+); // null
