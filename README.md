@@ -1,2 +1,2 @@
 # jsDSA
-collection of data structure problems utilizing javascript
+Collection of data structure problems utilizing javascript.
