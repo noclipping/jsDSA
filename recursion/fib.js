@@ -12,4 +12,4 @@ function fibonnaci(num) {
   }
   return helper(1, 1);
 }
-console.log(fibonnaci(28));
+// console.log(fibonnaci(28));
